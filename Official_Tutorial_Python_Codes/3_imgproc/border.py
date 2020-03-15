@@ -13,13 +13,14 @@ Usage : python border.py
 Written by : Abid K. (abidrahman2@gmail.com) , Visit opencvpython.blogspot.com for more tutorials '''
 
 import cv2
+import sys
 import numpy as np
 
-print " Press r to replicate the border with a random color "
-print " Press c to replicate the border "
-print " Press Esc to exit "
+print(" Press r to replicate the border with a random color ")
+print(" Press c to replicate the border ")
+print(" Press Esc to exit ")
 
-img = cv2.imread('home.jpg')
+img = cv2.imread(sys.argv[1])
 rows,cols = img.shape[:2]
 
 dst = img.copy()
