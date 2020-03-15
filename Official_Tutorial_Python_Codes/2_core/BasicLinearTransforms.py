@@ -13,19 +13,22 @@ Usage : python BasicLinearTransforms.py
 Written by : Abid K. (abidrahman2@gmail.com) , Visit opencvpython.blogspot.com for more tutorials '''
 
 import cv2
+import sys
 import numpy as np
 
-
-alpha = float(input('* Enter the alpha value [1.0-3.0]: '))     # Simple contrast control
-beta = int(input('Enter the beta value [0-100]: '))             # Simple brightness control
 
 print " Basic Linear Transforms "
 print "-----------------------------"
 
-img = cv2.imread('lena.jpg')
+alpha = float(input('* Enter the alpha value to control contrast [1.0-3.0]: '))     # Simple contrast control
+beta = int(input('Enter the beta value to control brightness [0-100]: '))             # Simple brightness control
+
+
+img = cv2.imread(sys.argv[1])
 
 mul_img = cv2.multiply(img,np.array([alpha]))                    # mul_img = img*alpha
-new_img = cv2.add(mul_img,np.array([beta]))                      # new_img = img*alpha + beta
+new_img = cv2.add(mul_img,np.full_like(mul_img, beta))                      # new_img = img*alpha + beta
+#new_img = cv2.add(mul_img,np.array([beta]))                      # new_img = img*alpha + beta
 
 cv2.imshow('original_image', img)
 cv2.imshow('new_image',new_img)
