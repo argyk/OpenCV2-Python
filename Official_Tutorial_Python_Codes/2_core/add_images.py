@@ -13,25 +13,26 @@ Usage : python simple_linear_blender.py
 Written by : Abid K. (abidrahman2@gmail.com) , Visit opencvpython.blogspot.com for more tutorials '''
 
 import cv2
+import sys
 import numpy as np
 
-print ''' Simple Linear Blender
+'''print Simple Linear Blender
 ------------------------------------------
 
 Enter value of alpha [0:1] :'''
 
-alpha = float(input())                 # Ask the value of alpha
+alpha = float(input('Simple Linear Blender \n------------------------------------------\n\nEnter value of alpha [0:1]: '))                 # Ask the value of alpha
 
 if 0<=alpha<=1:                        # Check if 0<= alpha <=1
     beta = 1.0 - alpha                 # Calculate beta = 1 - alpha
     gamma = 0.0                        # parameter gamma = 0
 
-    img1 = cv2.imread('lena.jpg')
-    img2 = cv2.imread('res.jpg')
+    img1 = cv2.imread(sys.argv[1])
+    img2 = cv2.imread(sys.argv[2])
 
-    if img1==None:
+    if img1==[]:
         print "img1 not ready"
-    elif img2==None:
+    elif img2==[]:
         print "img2 not ready"
     else:
         dst = cv2.addWeighted(img1,alpha,img2,beta,gamma)  # Get weighted sum of img1 and img2
