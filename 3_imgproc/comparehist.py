@@ -13,11 +13,12 @@ Usage : python comparehist.py
 Written by : Abid K. (abidrahman2@gmail.com) , Visit opencvpython.blogspot.com for more tutorials '''
 
 import cv2
+import sys
 import numpy as np
 
-base = cv2.imread('base.png')
-test1 = cv2.imread('test1.jpg')
-test2 = cv2.imread('test2.jpg')
+base = cv2.imread(sys.argv[1])
+test1 = cv2.imread(sys.argv[2])
+test2 = cv2.imread(sys.argv[3])
 
 rows,cols = base.shape[:2]
 
@@ -52,5 +53,3 @@ for i in xrange(4):
     base_test1 = cv2.compareHist(histbase,histtest1,i)
     base_test2 = cv2.compareHist(histbase,histtest2,i)
     print "Method: {0} -- base-base: {1} , base-half: {2} , base-test1: {3}, base_test2: {4}".format(i,base_base,base_half,base_test1,base_test2)
-
-    
